@@ -1,26 +1,33 @@
 package babysitting.fr.dyane.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Availabality")
 public class Availabality {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer id;
+	@Column(name = "availabalityId")
+	private Long id;
 	
+	@Column(name = "category", nullable = false)
 	private int category;
 	
+	@Column(name = "color", nullable = false)
 	private String color;
+	
 	
 	public Availabality() {
 		super();
 	}
 	
-	public Availabality(Integer id, int category, String color){
+	public Availabality(Long id, int category, String color){
 		super();
 		this.id = id;
 		this.category = category;
@@ -31,14 +38,14 @@ public class Availabality {
 	/**
 	 * @return the id
 	 */
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

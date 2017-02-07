@@ -1,32 +1,46 @@
 package babysitting.fr.dyane.entity;
 
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "User")
 public class User {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer id;
-	
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+
+	@Column(name = "firstname", nullable = false)
 	private String firstname;
-	
+
+	@Column(name = "lastname", nullable = false)
 	private String lastname;
-	
+
+	@Column(name = "phoneNumber", nullable = false)
 	private int phoneNumber;
-	
+
+	@Column(name = "email", nullable = false)
 	private String email;
-	
+
+	@Column(name = "address", nullable = true)
 	private String address;
-	
+
+	@OneToMany(mappedBy = "user")
+	private List<Calendar> dates;
+
 	public User() {
 		super();
 	}
-	
-	public User(Integer id, String firstname, String lastname, int phoneNumber, String email, String address){
+
+	public User(Long id, String firstname, String lastname, int phoneNumber, String email, String address, List<Calendar> dates) {
 		super();
 		this.id = id;
 		this.firstname = firstname;
@@ -34,19 +48,21 @@ public class User {
 		this.phoneNumber = phoneNumber;
 		this.email = email;
 		this.address = address;
+		this.dates = dates;
 	}
 
 	/**
 	 * @return the id
 	 */
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -58,7 +74,8 @@ public class User {
 	}
 
 	/**
-	 * @param firstname the firstname to set
+	 * @param firstname
+	 *            the firstname to set
 	 */
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
@@ -72,7 +89,8 @@ public class User {
 	}
 
 	/**
-	 * @param lastname the lastname to set
+	 * @param lastname
+	 *            the lastname to set
 	 */
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
@@ -86,7 +104,8 @@ public class User {
 	}
 
 	/**
-	 * @param phoneNumber the phoneNumber to set
+	 * @param phoneNumber
+	 *            the phoneNumber to set
 	 */
 	public void setPhoneNumber(int phoneNumber) {
 		this.phoneNumber = phoneNumber;
@@ -100,7 +119,8 @@ public class User {
 	}
 
 	/**
-	 * @param email the email to set
+	 * @param email
+	 *            the email to set
 	 */
 	public void setEmail(String email) {
 		this.email = email;
@@ -114,12 +134,25 @@ public class User {
 	}
 
 	/**
-	 * @param address the address to set
+	 * @param address
+	 *            the address to set
 	 */
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
-	
+
+	/**
+	 * @return the dates
+	 */
+	public List<Calendar> getDates() {
+		return dates;
+	}
+
+	/**
+	 * @param dates the dates to set
+	 */
+	public void setDates(List<Calendar> dates) {
+		this.dates = dates;
+	}
 
 }
